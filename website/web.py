@@ -19,12 +19,16 @@ def about():
 def submit():
     if request.method == "POST":
         formdata=request.form
+        start=0
+        if 'start' in formdata:
+            start=formdata['start']
         print(formdata['server'],formdata['username'],formdata['password'])
         emails=list(reversed(projectEmailGetter.getBriefFromEmails(projectEmailGetter.getEmailsIMAP(formdata['server'],
                                                                                       formdata['username'],
                                                                                       formdata['password'],
-                                                                                      ssl=True))))
-        res=make_response(render_template("choose.html",emails=enumerate(emails)))
+                                                                                      ssl=True,
+                                                                                      start=start))))
+        res=make_response(render_template("choose.html",emails=enumerate(emails),index=start))
         res.set_cookie("username",Fernet(key).encrypt(formdata['username'].encode()))
         res.set_cookie("password",Fernet(key).encrypt(formdata['password'].encode()))
         res.set_cookie("serverRL",Fernet(key).encrypt(formdata['server'].encode()))
