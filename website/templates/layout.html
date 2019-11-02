@@ -11,13 +11,22 @@
             <title>Hack Sheffield Email AI - {{title}}</title>
         {% else %}
             <title>Hack Sheffield Email AI</title>
-        {% endif %}
+        {% endif %}   
         
     </head>
 
     <body>
+        <header>
+            <h1> Hack Sheffield - Email AI</h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a href = "{{url_for('home')}}">Home</a></li>
+                <li><a href = "{{url_for('about')}}">About</a></li>
+            </ul>
+        </nav>
         <main>
-            <div class = "container">
+            <div>
                 {% block content%}
                 {% endblock %}
             </div>
