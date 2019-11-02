@@ -43,7 +43,7 @@ def check(v):
     password=Fernet(key).decrypt(password.encode())
     serverRL=request.cookies.get('serverRL')
     serverRL=Fernet(key).decrypt(serverRL.encode())
-    emails=projectEmailGetter.getContentFromEmails(projectEmailGetter.getEmailsIMAP(serverRL.decode("utf-8"),
+    emails=projectEmailGetter.getPlainFromEmails(projectEmailGetter.getEmailsIMAP(serverRL.decode("utf-8"),
                                                                                       username.decode("utf-8"),
                                                                                       password.decode("utf-8"),
                                                                                       ssl=True,

@@ -1,5 +1,7 @@
 import imaplib
 import re
+import base64
+import quopri
 def getEmailsIMAP(server,user,password,ssl=False,port=None,start=0,count=5):
     if not port:
         port = 993 if ssl else 143
@@ -34,7 +36,7 @@ def getBriefFromEmails(emails):
                 date=line
         briefs.append((sender,date,subject))
     return briefs
-def getContentFromEmails(emails):
+def getHTMLFromEmails(emails):
     contents=[]
     for email in emails:
         utfemail=email.decode("utf-8")
@@ -59,4 +61,41 @@ def getContentFromEmails(emails):
              #   date=line
         contents.append(content)
     return contents
-#print(getContentFromEmails(getEmailsIMAP("imap.gmail.com","mdr.brook@gmail.com","mmjixwvaxdwndlfc",ssl=True)))
+def getPlainFromEmails(emails):
+    contents=[]
+    for email in emails:
+        utfemail=email.decode("utf-8")
+        boundary=""
+        capture=0
+        transEnc=""
+        content=""
+        for line in utfemail.split("\n"):
+            if boundary=="":
+                match=re.match(r'.*boundary\=\"(.*)\"',line)
+                if match:
+                    boundary=match.group(1);
+            else:
+                if boundary in line:
+                    capture+=1
+                elif capture==1 or capture==2:
+                    capture+=1
+                    match=re.match(r'.*Content-Transfer-Encoding:(.*)',line)
+                    if match:
+                        transEnc=match.group(1).strip()
+                elif capture==3:
+                    if transEnc=="base64":
+                        content+= base64.decodebytes(line.encode()).decode("utf-8")
+                    elif transEnc=="quoted-printable":
+                        content+=quopri.decodestring(line.encode()).decode("ISO-8859-1")
+                    else:
+                        if content!="":
+                            content+="\n"
+                        content+=line
+           # elif sender=="" and (re.match('Sender:',line) or re.match('From:',line)):
+            #    sender=line
+            #elif date=="" and re.match('Date:',line):
+             #   date=line
+        contents.append(content)
+    return contents
+
+getPlainFromEmails(getEmailsIMAP("imap.gmail.com","mdr.brook@gmail.com","mmjixwvaxdwndlfc",ssl=True,count=10))
