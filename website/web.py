@@ -1,5 +1,4 @@
-from flask import Flask, render_template, url_for
-import projectEmailGetter
+from flask import Flask, render_template, url_for 
 app = Flask(__name__)
 
 @app.route('/')
@@ -17,7 +16,6 @@ def submit():
     if request.method == "POST":
         return "HEllo PWORWFL"
     return render_template("submit.html")
-
 
 
 if __name__ == '__main__':
