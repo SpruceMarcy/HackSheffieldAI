@@ -1,8 +1,41 @@
 header{
     text-align: center;
     background-color: #f1f1f1;
+    position: relative;
+    /* background-color: red; */
 }
 
 body{
     margin: 0;
+    background-image: url("../img/bg.jpg");
+}
+main h1{
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+main #content{
+
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    height: 50%;
+    
+    white-space: nowrap;
+    background-color: #f1f1f1;
+    text-align: center;
+}
+
+nav{
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    padding-top: 20px;
 }
