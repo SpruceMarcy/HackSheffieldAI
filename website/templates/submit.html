@@ -2,8 +2,9 @@
 {% block content %}
     <h1> Log In </h1>
     <form method="POST">
-		<input name="username"/>
-	
-	
+		<input name="username" type="text" placeholder="Username" required/>
+		<input name="password" type="password" placeholder="Password"  required/>
+		<input name="server" type="text" value="imap.gmail.com" placeholder="e.g. imap.gmail.com" required/>
+		<input type="submit"/>
 	</form>
 {% endblock content %}

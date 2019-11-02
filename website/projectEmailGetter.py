@@ -1,4 +1,5 @@
 import imaplib
+import re
 def getEmailsIMAP(server,user,password,ssl=False,port=None,start=0,count=5):
     if not port:
         port = 993 if ssl else 143
@@ -16,4 +17,21 @@ def getEmailsIMAP(server,user,password,ssl=False,port=None,start=0,count=5):
     else:
         imap.close()
         raise Exception
-#print(getEmailsIMAP("imap.gmail.com","mdr.brook@gmail.com","oivbfyidlycjgkus",ssl=True))
+def getBriefFromEmails(emails):
+    briefs=[]
+    for email in emails:
+        utfemail=email.decode("utf-8")
+        subject=""
+        sender=""
+        date=""
+        #print(utfemail)
+        for line in utfemail.split("\n"):
+            if subject=="" and re.match('Subject:',line):
+                subject=line
+            elif sender=="" and (re.match('Sender:',line) or re.match('From:',line)):
+                sender=line
+            elif date=="" and re.match('Date:',line):
+                date=line
+        briefs.append((sender,date,subject))
+    return briefs
+#getBriefFromEmails(getEmailsIMAP("imap.gmail.com","mdr.brook@gmail.com","mmjixwvaxdwndlfc",ssl=True))
