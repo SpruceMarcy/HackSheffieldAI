@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Selected Email:</h1>
+	<script id="hello" type="text/template">
+	  {{content|safe}}
+	</script>
+	<iframe id="email" style="width:100%;height:100%"></iframe>
+	<script>
+	  doc=document.getElementById('email').contentWindow.document
+	  doc.open();
+	  doc.write(document.getElementById('hello').innerHTML);
+	  doc.close();
+	</script>
+{% endblock content %}

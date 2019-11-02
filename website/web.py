@@ -35,9 +35,21 @@ def submit():
         return res
     return render_template("submit.html")
 
-@app.route('/check/',methods=["GET","POST"])
-def check():
-    return render_template("submit.html")
+@app.route('/check/<int:v>',methods=["GET","POST"])
+def check(v):
+    username=request.cookies.get('username')
+    username=Fernet(key).decrypt(username.encode())
+    password=request.cookies.get('password')
+    password=Fernet(key).decrypt(password.encode())
+    serverRL=request.cookies.get('serverRL')
+    serverRL=Fernet(key).decrypt(serverRL.encode())
+    emails=projectEmailGetter.getContentFromEmails(projectEmailGetter.getEmailsIMAP(serverRL.decode("utf-8"),
+                                                                                      username.decode("utf-8"),
+                                                                                      password.decode("utf-8"),
+                                                                                      ssl=True,
+                                                                                      start=v,
+                                                                                      count=1))
+    return render_template("show.html",content=emails[0])
 
 if __name__ == '__main__':
     app.run(debug=True)

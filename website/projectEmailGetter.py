@@ -34,4 +34,29 @@ def getBriefFromEmails(emails):
                 date=line
         briefs.append((sender,date,subject))
     return briefs
-#getBriefFromEmails(getEmailsIMAP("imap.gmail.com","mdr.brook@gmail.com","mmjixwvaxdwndlfc",ssl=True))
+def getContentFromEmails(emails):
+    contents=[]
+    for email in emails:
+        utfemail=email.decode("utf-8")
+        boundary=""
+        capture=0
+        content=""
+        for line in utfemail.split("\n"):
+            if boundary=="":
+                match=re.match(r'.*boundary\=\"(.*)\"',line)
+                if match:
+                    boundary=match.group(1);
+            else:
+                if boundary in line:
+                    capture+=1
+                elif capture==2:
+                    if content!="":
+                        content+="\n"
+                    content+=line
+           # elif sender=="" and (re.match('Sender:',line) or re.match('From:',line)):
+            #    sender=line
+            #elif date=="" and re.match('Date:',line):
+             #   date=line
+        contents.append(content)
+    return contents
+#print(getContentFromEmails(getEmailsIMAP("imap.gmail.com","mdr.brook@gmail.com","mmjixwvaxdwndlfc",ssl=True)))
