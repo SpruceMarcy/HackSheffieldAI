@@ -1,10 +1,3 @@
-header{
-    text-align: center;
-    background-color: #f1f1f1;
-    position: relative;
-    /* background-color: red; */
-}
-
 body{
     margin: 0;
     background-image: url("../img/bg.jpg");
@@ -24,17 +17,19 @@ main #content{
     bottom: 0;
     left: 0;
     width: 50%;
-    height: 50%;
-    
-    white-space: nowrap;
+    padding-bottom: 3em;
+    height: -webkit-fit-content;
+    display: inline-block;
+
     background-color: #f1f1f1;
     text-align: center;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 nav{
     height: 100%;
-    width: 10em;
+    width: 10%;
+    min-width: 10%;
     position: fixed;
     background-color: #111;
     padding-top: 20px;
@@ -45,23 +40,33 @@ nav a {
     font-size: 2em;
     color: #818181;
     display: block;
-  }
-  
+}
+
 nav a:hover {
     background-color: lightblue;
     color: #f1f1f1;
     text-decoration: none;
 }
 
-nav ul a{
+nav ul{
     list-style-type: none;
     margin: 0;
+    width: 100%;
+}
+
+nav img{
+    width: 70%;
+    bottom:0;
+    left:0;
+
+    position: absolute;
 }
 
 main .homeSelectButtons{
-    padding-top: 2em;
-    width: 45%;
-    height: auto;
+    padding-top: 1em;
+    padding-right:5em;
+    padding-left: 5em;
+    
     /* background-color: blue; */
     display: inline-block;
 }
