@@ -1,10 +1,10 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1> Log In </h1>
+    <h1> Sign In </h1>
     <form method="POST">
 		<input name="username" type="text" placeholder="Username" required/><br>
 		<input name="password" type="password" placeholder="Password"  required/><br>
-		<input name="server" type="text" value="imap.gmail.com" placeholder="e.g. imap.gmail.com" required/>
+    <input name="server" type="text" value="imap.gmail.com" placeholder="e.g. imap.gmail.com" required/><br><br>
 		<input type="submit"/>
 	</form>
 {% endblock content %}

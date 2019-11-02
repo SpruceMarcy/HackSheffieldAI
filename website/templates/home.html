@@ -4,8 +4,18 @@
 {% block content %}
     <h1>Hack Sheffield - Email AI</h1>
     <p>Our project</p>
-    <a href = "{{url_for('submit')}}">
-        <span class="glyphicon glyphicon-user"></span>
-    </a>
-    </div id = "uploadBox">
+    <div>
+        <a href = "{{url_for('submit')}}">
+            <div class = "homeSelectButtons">
+                <span class="glyphicon glyphicon-envelope"></span><br>
+                Login with Gmail
+            </div>
+        </a>
+            
+            <div class = "homeSelectButtons">
+                <span class="glyphicon glyphicon-cloud-upload"></span><br>
+                Upload an email
+            </div>
+            
+    </div>
 {% endblock content %}
