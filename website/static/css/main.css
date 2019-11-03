@@ -10,27 +10,30 @@ main h1{
     padding-top: 1em;
     padding-bottom: 1em;
     font-size: 2em;
-    white-space: nowrap;
+    word-wrap: break-word;
 }
     
 main #content{
     position: absolute;
-    margin: auto;
     top: 0;
     right: 0;
     bottom: 0;
     left: 10em; 
     /* display slightly to right from center, spacing for nav bar */
+    
+    margin: auto;
+    
+    padding: 2em 2em;
     width: fit-content;
-    padding: 3em 2em;
-
     height: fit-content;
-    display: inline-block;
 
     background-color: #f1f1f1;
     text-align: center;
 
-    min-width:550px;
+    min-width:400px;
+    max-width: 700px;
+    max-height: 700px;
+
 }
 
 /* for email choice screen */
@@ -53,14 +56,17 @@ main .emailChoice:hover{
     text-decoration: none;
 }
 /* for selected email screen */
-main #emailShow p{
-    text-align: left;
-    /* word-wrap: break-word; */
-}
+
 
 main #emailShow{
     max-width: 700px;
+    
     word-wrap: break-word;
+    /* top:100%; */
+}
+main #emailShow p{
+    text-align: left;
+
 }
 /* main buttons */
 main .homeSelectButtons{
