@@ -1,14 +1,14 @@
 from flask import Flask, render_template, url_for, request, make_response
 from cryptography.fernet import Fernet
 import projectEmailGetter
-import ClassifierFinalVersion.Python_Classifier as pyClass
+import Python_Classifier as pyClass
 app = Flask(__name__)
 key = Fernet.generate_key()
 
 def runFromEmail(email):
-    with open("ClassifierFinalVersion/data.txt","w") as file:
+    with open("data.txt","w") as file:
         file.write(email)
-    return pyClass.run("ClassifierFinalVersion/data.txt")
+    return pyClass.run("data.txt")
     
 
 @app.route('/')
