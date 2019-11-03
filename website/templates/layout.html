@@ -6,26 +6,28 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href = "{{url_for('static', filename = 'css/Bootstrap.css')}}" rel = "text/css">
         <link rel = "stylesheet" href = "{{url_for('static', filename = 'css/main.css')}}" rel = "text/css">
+        <!-- fonts -->
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Bowlby+One+SC&display=swap" rel="stylesheet">
         {% if title %}
             <title>Hack Sheffield Email AI - {{title}}</title>
         {% else %}
             <title>Hack Sheffield Email AI</title>
         {% endif %}   
-        
     </head>
-
     <body>
         <nav>
             <ul>
                 <li><a href = "{{url_for('home')}}">Home</a></li>
                 <li><a href = "{{url_for('about')}}">About</a></li>
             </ul>
-            <img src = /static/img/hs5.jpg>
+            <a href = "https://hacksheffield.co/">
+                <img src = /static/img/hs5.jpg>
+            </a>
+
         </nav>
         <main>
             <div id = "content">
-                
                 <!-- If not root page, add clickable back arrow -->
                 {%if request.path != "/" %} 
                 <a href = "./..">

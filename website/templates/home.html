@@ -2,19 +2,19 @@
 <!-- html content which is added to block called content in layout.html -->
 {% extends "layout.html" %}
 {% block content %}
-    <h1>Hack Sheffield - Email AI</h1>
+    <header><strong>Chainmail - Spam Detector</strong></header>
     <div>
         <div class = "homeSelectButtons">
             <a href = "{{url_for('submit')}}">
             <span class="glyphicon glyphicon-envelope"></span><br>
-                Login with Gmail
+                Login to Email
             </a>
         </div>
             
             <div class = "homeSelectButtons">
                 <a href = "{{url_for('upload')}}">
                     <span class="glyphicon glyphicon-cloud-upload"></span><br>
-                    Upload an email
+                    Upload an email (eml)
                 </a>
             </div>
     </div>

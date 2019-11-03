@@ -11,6 +11,14 @@ main h1{
     padding-bottom: 1em;
     font-size: 2em;
     word-wrap: break-word;
+    font-family: Bowlby One SC;
+}
+
+main header{
+    font-size: 3em;
+    color: rgb(165, 11, 42);
+    white-space: nowrap;
+    font-family: Bowlby One SC;
 }
     
 main #content{
@@ -31,7 +39,7 @@ main #content{
     text-align: center;
 
     min-width:400px;
-    max-width: 700px;
+    max-width: 750px;
     max-height: 700px;
 
 }
@@ -129,15 +137,6 @@ nav img{
     left: 25%; 
     width: 50%;
     padding-bottom: 1em;
-}
-
-
-
-div.fraud{
-	background-color:#DDAAAA;
-}
-div.okay{
-	background-color:#AADDAA;
 }
 
 /* breakpoint for mobile */

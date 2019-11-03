@@ -1,18 +1,16 @@
 {% extends "layout.html" %}
 {% block content %}
-	<div id = "emailShow" class="{{["okay","fraud"][fraud]}}">
-		{% if fraud==1:%}
-		<p>This email is suspicious</p>
-		{% else %}
-		<p>This email is okay</p>
-		{% endif %}
-		<!-- subject -->
-		<h1>{{email[2]}}</h1>
-		<!-- date  -->
-		<p>{{email[1]}}</p>
-		<!-- author -->
-		<p>{{email[0]}}</p>
-		<!-- body -->
-		<p>{{content|safe}}</p>
-	</div>
+	{% if fraud==1:%}
+	<span class = "fraud alert alert-danger">This email is suspicious</span>
+	{% else %}
+	<span class = "okay alert alert-success">This email is okay</span>
+	{% endif %}
+	<!-- subject -->
+	<h1>{{email[2]}}</h1>
+	<!-- date  -->
+	<p>{{email[1]}}</p>
+	<!-- author -->
+	<p>{{email[0]}}</p>
+	<!-- body -->
+	<p>{{content|safe}}</p>
 {% endblock content %}
