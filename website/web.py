@@ -51,7 +51,7 @@ def check(v):
                                                                                       count=1)
     emails=projectEmailGetter.getPlainFromEmails(rawemail)
     emailbrief=list(reversed(projectEmailGetter.getBriefFromEmails(rawemail)))
-    return render_template("show.html",content=emails[0],email=emailbrief)
+    return render_template("show.html",content=emails[0],email=emailbrief[0])
 
 @app.route('/upload',methods=["GET","POST"])
 def upload():
