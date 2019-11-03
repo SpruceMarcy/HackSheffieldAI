@@ -91,6 +91,17 @@ def getPlainFromEmails(emails):
                         if content!="":
                             content+="\n"
                         content+=line
+        if content=="":#FALLBACK
+            match=re.search(r'Content-Transfer-Encoding: +(base64|quoted-printable|utf-7)',utfemail)
+            if match:
+                transEnc=match.group(1).strip()
+            if transEnc=="base64":
+                utfemail= base64.decodebytes(utfemail.encode()).decode("utf-8")
+            elif transEnc=="quoted-printable":
+                utfemail=quopri.decodestring(utfemail.encode()).decode("ISO-8859-1")
+            utfemail=re.sub("\n"," ",utfemail)
+            match=re.match(r'.*Content\-Transfer\-Encoding:.*?(\<.*)$',utfemail,flags=re.IGNORECASE)
+            content=re.sub(r'\<.*?\>'," ",re.sub(r'<style.*?>.*?<\/style>',"",match.group(1)))
         contents.append(content)
     return contents
 def stripToText(string):
