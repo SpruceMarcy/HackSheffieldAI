@@ -36,31 +36,31 @@ def getBriefFromEmails(emails):
                 date=line
         briefs.append((sender,date,subject))
     return briefs
-def getHTMLFromEmails(emails):
-    contents=[]
-    for email in emails:
-        utfemail=email.decode("utf-8")
-        boundary=""
-        capture=0
-        content=""
-        for line in utfemail.split("\n"):
-            if boundary=="":
-                match=re.match(r'.*boundary\=\"(.*)\"',line)
-                if match:
-                    boundary=match.group(1);
-            else:
-                if boundary in line:
-                    capture+=1
-                elif capture==2:
-                    if content!="":
-                        content+="\n"
-                    content+=line
-           # elif sender=="" and (re.match('Sender:',line) or re.match('From:',line)):
-            #    sender=line
-            #elif date=="" and re.match('Date:',line):
-             #   date=line
-        contents.append(content)
-    return contents
+#def getHTMLFromEmails(emails):
+#    contents=[]
+#    for email in emails:
+#        utfemail=email.decode("utf-8")
+#        boundary=""
+#        capture=0
+#        content=""
+#       for line in utfemail.split("\n"):
+#            if boundary=="":
+#                match=re.match(r'.*boundary\=\"(.*)\"',line)
+#                if match:
+#                    boundary=match.group(1);
+#            else:
+#                if boundary in line:
+#                    capture+=1
+#                elif capture==2:
+##                    if content!="":
+#                        content+="\n"
+#                    content+=line
+#           # elif sender=="" and (re.match('Sender:',line) or re.match('From:',line)):
+#            #    sender=line
+#            #elif date=="" and re.match('Date:',line):
+#             #   date=line
+#        contents.append(content)
+#    return contents
 def getPlainFromEmails(emails):
     contents=[]
     for email in emails:
@@ -91,11 +91,11 @@ def getPlainFromEmails(emails):
                         if content!="":
                             content+="\n"
                         content+=line
-           # elif sender=="" and (re.match('Sender:',line) or re.match('From:',line)):
-            #    sender=line
-            #elif date=="" and re.match('Date:',line):
-             #   date=line
         contents.append(content)
     return contents
-
-getPlainFromEmails(getEmailsIMAP("imap.gmail.com","mdr.brook@gmail.com","mmjixwvaxdwndlfc",ssl=True,count=10))
+def stripToText(string):
+    return re.sub("-+","-",re.sub(" +"," ",re.sub(r'[^a-zA-Z0-9\' \.:/-]',"",re.sub(r'[\t\n\r]'," ",string))))
+#for i in getPlainFromEmails(getEmailsIMAP("imap.gmail.com","mdr.brook@gmail.com","mmjixwvaxdwndlfc",ssl=True,count=10)):
+#    print(stripToText(i))
+#    print()
+#    print()
