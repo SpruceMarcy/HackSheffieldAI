@@ -19,7 +19,6 @@
         <nav>
             <ul>
                 <li><a href = "{{url_for('home')}}">Home</a></li>
-                <!-- <li><a href = "{{url_for('submit')}}">Sign in</a></li> -->
                 <li><a href = "{{url_for('about')}}">About</a></li>
             </ul>
             <img src = static/img/hs5.jpg>
@@ -29,7 +28,7 @@
                 
                 <!-- If not root page, add clickable back arrow -->
                 {%if request.path != "/" %} 
-                <a href = "..">
+                <a href = "./..">
                     <span class = "glyphicon glyphicon-arrow-left" id= "backButton"></span>
                 </a>
                 {%endif%}

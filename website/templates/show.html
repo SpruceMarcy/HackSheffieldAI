@@ -1,14 +1,13 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>Selected Email:</h1>
-	<script id="hello" type="text/template">
-	  {{content|safe}}
-	</script>
-	<iframe id="email"></iframe>
-	<script>
-	  doc=document.getElementById('email').contentWindow.document
-	  doc.open();
-	  doc.write(document.getElementById('hello').innerHTML);
-	  doc.close();
-	</script>
+	<div id = "emailShow">
+		<!-- subject -->
+		<h1>{{email[2]}}</h1>
+		<!-- date  -->
+		<p>{{email[1]}}</p>
+		<!-- author -->
+		<p>{{email[0]}}</p>
+		<!-- body -->
+		<p>{{content|safe}}</p>
+	</div>
 {% endblock content %}

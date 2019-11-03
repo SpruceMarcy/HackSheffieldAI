@@ -19,11 +19,12 @@ main #content{
     top: 0;
     right: 0;
     bottom: 0;
-    left: 10em;
+    left: 10em; 
     /* display slightly to right from center, spacing for nav bar */
-    width: 50%;
-    padding-bottom: 2em;
-    height: -webkit-fit-content;
+    width: fit-content;
+    padding: 3em 2em;
+
+    height: fit-content;
     display: inline-block;
 
     background-color: #f1f1f1;
@@ -32,6 +33,33 @@ main #content{
     min-width:550px;
 }
 
+main .emailChoice{
+    width :fit-content;
+    max-width: 780px;
+    background-color: #e5e5e5;
+}
+
+/* for email choice screen */
+main .emailChoice p{ 
+    /* Subject, author and date of email */
+    width:500px;
+    word-wrap: break-word;
+    color: #818181;
+}
+
+main .emailChoice:hover{
+    background-color: skyblue;
+    transition: 0.3s;
+    text-decoration: none;
+}
+/* for selected email screen */
+main #emailShow p{
+    text-align: left;
+    word-wrap: break-word;
+}
+main #emailShow{
+    max-width: 700px;
+}
 nav{
     height: 100%;
     width: 10%;
@@ -50,7 +78,6 @@ nav a {
 }
 
 nav a:hover {
-    background-color: lightblue;
     color: #f1f1f1;
     text-decoration: none;
 }
@@ -59,6 +86,15 @@ nav ul{
     list-style-type: none;
     margin: 0;
     width: 100%;
+    padding-left:0;
+}
+nav ul li{
+    width:100%;
+    padding-left: 1em;
+}
+nav ul li:hover{
+    transition: 0.3s;
+    background-color: lightblue;
 }
 
 nav img{
@@ -78,12 +114,11 @@ main .homeSelectButtons{
     display: inline-block;
 }
 
-main .homeSelectButtons .glyphicon{
-    font-size: 50px;   
-}
-
 main .homeSelectButtons{
     min-width: 260px;
+}
+main .homeSelectButtons .glyphicon{
+    font-size: 50px;   
 }
 
 main #backButton {

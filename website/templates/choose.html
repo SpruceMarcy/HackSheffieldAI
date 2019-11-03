@@ -2,12 +2,13 @@
 {% block content %}
     <h1>Choose an email</h1>
     {%for i, email in emails:%}
-		<form method="POST" action="/check/{{i+index}}">
-			<button>
-			<p>{{email[0]}}</p>
-			<p>{{email[1]}}</p>
-			<p>{{email[2]}}</p>
-			</button>
+		<form method="POST">
+			<a href ="/check/{{i+index}}">
+				<article class = "emailChoice" >
+				<p>{{email[0]}}</p>
+				<p>{{email[2]}}</p>
+				</article>
+			</a>
 		</form>
 	{%endfor%}
 {% endblock content %}
