@@ -12,9 +12,10 @@
         </div>
             
             <div class = "homeSelectButtons">
-                <span class="glyphicon glyphicon-cloud-upload"></span><br>
-                Upload an email
+                <a href = "{{url_for('upload')}}">
+                    <span class="glyphicon glyphicon-cloud-upload"></span><br>
+                    Upload an email
+                </a>
             </div>
-            
     </div>
 {% endblock content %}

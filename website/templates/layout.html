@@ -6,7 +6,7 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href = "{{url_for('static', filename = 'css/Bootstrap.css')}}" rel = "text/css">
         <link rel = "stylesheet" href = "{{url_for('static', filename = 'css/main.css')}}" rel = "text/css">
-        
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
         {% if title %}
             <title>Hack Sheffield Email AI - {{title}}</title>
         {% else %}
@@ -16,19 +16,24 @@
     </head>
 
     <body>
-        <!-- <header>
-            <h1> Hack Sheffield - Email AI</h1>
-        </header> -->
         <nav>
             <ul>
                 <li><a href = "{{url_for('home')}}">Home</a></li>
-                <!-- <li><a href = "{{url_for('submit')}}">Submit</a></li> -->
+                <!-- <li><a href = "{{url_for('submit')}}">Sign in</a></li> -->
                 <li><a href = "{{url_for('about')}}">About</a></li>
             </ul>
             <img src = static/img/hs5.jpg>
         </nav>
         <main>
             <div id = "content">
+                
+                <!-- If not root page, add clickable back arrow -->
+                {%if request.path != "/" %} 
+                <a href = "..">
+                    <span class = "glyphicon glyphicon-arrow-left" id= "backButton"></span>
+                </a>
+                {%endif%}
+                <!-- html is extended within block content -->
                 {% block content%}
                 {% endblock %}
             </div>
