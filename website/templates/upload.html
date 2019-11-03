@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
     <h1> Upload File </h1>
-    <form method="POST">
-		<input name="file" type="file"required/><br>
-		<input type="submit"/>
-	</form>
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" id="file" name="file" accept=".eml"/>
+        <input type="submit"/>
+    </form>
 {% endblock content %}

@@ -69,7 +69,8 @@ def upload():
         #res.set_cookie("password",Fernet(key).encrypt(formdata['password'].encode()))
         #res.set_cookie("serverRL",Fernet(key).encrypt(formdata['server'].encode()))
         #return res
-        pass
+        f = request.files['file']
+        return render_template("show.html",content=projectEmailGetter.getPlainFromEmails([f.read()])[0])
     return render_template("upload.html")
 
 if __name__ == '__main__':
