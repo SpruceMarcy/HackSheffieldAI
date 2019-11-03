@@ -1,9 +1,15 @@
 from flask import Flask, render_template, url_for, request, make_response
 from cryptography.fernet import Fernet
 import projectEmailGetter
+import ClassifierFinalVersion.Python_Classifier as pyClass
 app = Flask(__name__)
 key = Fernet.generate_key()
 
+def runFromEmail(email):
+    with open("ClassifierFinalVersion/data.txt","w") as file:
+        file.write(email)
+    return pyClass.run("ClassifierFinalVersion/data.txt")
+    
 
 @app.route('/')
 def home():
@@ -51,7 +57,8 @@ def check(v):
                                                                                       count=1)
     emails=projectEmailGetter.getPlainFromEmails(rawemail)
     emailbrief=list(reversed(projectEmailGetter.getBriefFromEmails(rawemail)))
-    return render_template("show.html",content=emails[0],email=emailbrief[0])
+    fraudulence=runFromEmail(projectEmailGetter.stripToText(projectEmailGetter.getPlainFromEmails(rawemail)[0]))[0]
+    return render_template("show.html",content=emails[0],email=emailbrief[0],fraud=fraudulence)
 
 @app.route('/upload',methods=["GET","POST"])
 def upload():
@@ -73,7 +80,8 @@ def upload():
         #return res
         f = request.files['file']
         readf=f.read()
-        return render_template("show.html",content=projectEmailGetter.getPlainFromEmails([readf])[0],email=projectEmailGetter.getBriefFromEmails([readf])[0])
+        fraudulence=runFromEmail(projectEmailGetter.stripToText(projectEmailGetter.getPlainFromEmails([readf])[0]))[0]
+        return render_template("show.html",content=projectEmailGetter.getPlainFromEmails([readf])[0],email=projectEmailGetter.getBriefFromEmails([readf])[0],fraud=fraudulence)
     return render_template("upload.html")
 
 if __name__ == '__main__':

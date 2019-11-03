@@ -1,6 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
-	<div id = "emailShow">
+	<div id = "emailShow" class="{{["okay","fraud"][fraud]}}">
+		{% if fraud==1:%}
+		<p>This email is suspicious</p>
+		{% else %}
+		<p>This email is okay</p>
+		{% endif %}
 		<!-- subject -->
 		<h1>{{email[2]}}</h1>
 		<!-- date  -->
