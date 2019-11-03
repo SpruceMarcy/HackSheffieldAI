@@ -33,13 +33,13 @@ main #content{
     min-width:550px;
 }
 
+/* for email choice screen */
 main .emailChoice{
     width :fit-content;
     max-width: 780px;
     background-color: #e5e5e5;
 }
 
-/* for email choice screen */
 main .emailChoice p{ 
     /* Subject, author and date of email */
     width:500px;
@@ -55,10 +55,33 @@ main .emailChoice:hover{
 /* for selected email screen */
 main #emailShow p{
     text-align: left;
-    word-wrap: break-word;
+    /* word-wrap: break-word; */
 }
+
 main #emailShow{
     max-width: 700px;
+    word-wrap: break-word;
+}
+/* main buttons */
+main .homeSelectButtons{
+    padding-top: 1em;
+    padding-right:5em;
+    padding-left: 5em;
+    
+    /* background-color: blue; */
+    display: inline-block;
+}
+
+main .homeSelectButtons{
+    min-width: 260px;
+}
+main .homeSelectButtons .glyphicon{
+    font-size: 50px;   
+}
+
+main #backButton {
+    font-size:50px;
+    float: left;
 }
 nav{
     height: 100%;
@@ -69,7 +92,7 @@ nav{
     min-width: 150px;
     
 }
-
+/* navigation */
 nav a {
     padding: 6px;
     font-size: 2em;
@@ -105,26 +128,7 @@ nav img{
     padding-bottom: 1em;
 }
 
-main .homeSelectButtons{
-    padding-top: 1em;
-    padding-right:5em;
-    padding-left: 5em;
-    
-    /* background-color: blue; */
-    display: inline-block;
-}
 
-main .homeSelectButtons{
-    min-width: 260px;
-}
-main .homeSelectButtons .glyphicon{
-    font-size: 50px;   
-}
-
-main #backButton {
-    font-size:50px;
-    float: left;
-}
 
 
 
