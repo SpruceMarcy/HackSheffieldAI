@@ -65,14 +65,12 @@ main .emailChoice:hover{
 }
 /* for selected email screen */
 main #emailShow{
-    max-width: 700px;
+    height: fit-content;
     word-wrap: break-word;
-    /* top:100%; */
+    background-color: #e5e5e5;
+    top:100%;
 }
-main #emailShow p{
-    text-align: left;
 
-}
 /* main buttons */
 main .homeSelectButtons{
     padding-top: 1em;
