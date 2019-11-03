@@ -2,7 +2,7 @@ body{
     margin: 0;
     background-image: url("../img/bg.jpg");
     font-family: Roboto;
-    font-size: 18px;
+    font-size: 15px;
     min-width:380px;
 }
 
@@ -10,6 +10,7 @@ main h1{
     padding-top: 1em;
     padding-bottom: 1em;
     font-size: 2em;
+    white-space: nowrap;
 }
     
 main #content{
@@ -19,22 +20,25 @@ main #content{
     right: 0;
     bottom: 0;
     left: 10em;
+    /* display slightly to right from center, spacing for nav bar */
     width: 50%;
-    padding-bottom: 3em;
+    padding-bottom: 2em;
     height: -webkit-fit-content;
     display: inline-block;
 
     background-color: #f1f1f1;
     text-align: center;
+
+    min-width:550px;
 }
 
 nav{
     height: 100%;
     width: 10%;
-    min-width: 150px;
     position: fixed;
     background-color: #111;
     padding-top: 20px;
+    min-width: 150px;
     
 }
 
@@ -62,6 +66,7 @@ nav img{
     bottom:0;
     left: 25%; 
     width: 50%;
+    padding-bottom: 1em;
 }
 
 main .homeSelectButtons{
@@ -74,8 +79,19 @@ main .homeSelectButtons{
 }
 
 main .homeSelectButtons .glyphicon{
-    font-size: 50px;
+    font-size: 50px;   
 }
+
+main .homeSelectButtons{
+    min-width: 260px;
+}
+
+main #backButton {
+    font-size:50px;
+    float: left;
+}
+
+
 
 /* breakpoint for mobile */
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
@@ -84,5 +100,9 @@ main .homeSelectButtons .glyphicon{
     }
     main #content{
         left: 12em;
+        min-width: 550px;
+    }
+    nav{
+        width: 5%;
     }
 }
