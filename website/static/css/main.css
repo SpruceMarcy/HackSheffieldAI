@@ -56,11 +56,8 @@ main .emailChoice:hover{
     text-decoration: none;
 }
 /* for selected email screen */
-
-
 main #emailShow{
     max-width: 700px;
-    
     word-wrap: break-word;
     /* top:100%; */
 }
