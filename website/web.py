@@ -1,14 +1,14 @@
 from flask import Flask, render_template, url_for, request, make_response
 from cryptography.fernet import Fernet
 import projectEmailGetter
-import ClassifierFinalVersion.Python_Classifier as pyClass
+import Python_Classifier as pyClass
 app = Flask(__name__)
 key = Fernet.generate_key()
 
 def runFromEmail(email):
-    with open("ClassifierFinalVersion/data.txt","w") as file:
+    with open("data.txt","w") as file:
         file.write(email)
-    return pyClass.run("ClassifierFinalVersion/data.txt")
+    return pyClass.run("data.txt")
     
 
 @app.route('/')
@@ -27,17 +27,35 @@ def submit():
         formdata=request.form
         start=0
         if 'start' in formdata:
-            start=formdata['start']
-        print(formdata['server'],formdata['username'],formdata['password'])
-        emails=list(reversed(projectEmailGetter.getBriefFromEmails(projectEmailGetter.getEmailsIMAP(formdata['server'],
-                                                                                      formdata['username'],
-                                                                                      formdata['password'],
+            start=int(formdata['start'])
+        serverRL=""
+        if 'server' in formdata:
+            serverRL=formdata['server']
+        else:
+            serverRL=request.cookies.get('serverRL')
+            serverRL=Fernet(key).decrypt(serverRL.encode()).decode("utf-8")
+        username=""
+        if 'username' in formdata:
+            username=formdata['username']
+        else:
+            username=request.cookies.get('username')
+            username=Fernet(key).decrypt(username.encode()).decode("utf-8")
+        password=""
+        if 'password' in formdata:
+            password=formdata['password']
+        else:
+            password=request.cookies.get('password')
+            password=Fernet(key).decrypt(password.encode()).decode("utf-8")
+        emails=list(reversed(projectEmailGetter.getBriefFromEmails(projectEmailGetter.getEmailsIMAP(serverRL,
+                                                                                      username,
+                                                                                      password,
                                                                                       ssl=True,
                                                                                       start=start))))
         res=make_response(render_template("choose.html",emails=enumerate(emails),index=start))
-        res.set_cookie("username",Fernet(key).encrypt(formdata['username'].encode()))
-        res.set_cookie("password",Fernet(key).encrypt(formdata['password'].encode()))
-        res.set_cookie("serverRL",Fernet(key).encrypt(formdata['server'].encode()))
+        if 'username' in formdata and 'password' in formdata and 'server' in formdata:
+            res.set_cookie("username",Fernet(key).encrypt(formdata['username'].encode()))
+            res.set_cookie("password",Fernet(key).encrypt(formdata['password'].encode()))
+            res.set_cookie("serverRL",Fernet(key).encrypt(formdata['server'].encode()))
         return res
     return render_template("submit.html")
 

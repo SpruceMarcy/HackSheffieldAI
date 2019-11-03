@@ -1,6 +1,12 @@
 {% extends "layout.html" %}
 {% block content %}
     <h1>Choose an email</h1>
+		{%if index>=5%}
+		<form method="POST">
+			<input type="hidden" name="start" value="{{index-5}}">
+			<input type="submit" value="Previous Emails">
+		</form>
+		{%endif%}
     {%for i, email in emails:%}
 		<form method="POST">
 			<a href ="/check/{{i+index}}">
@@ -11,4 +17,8 @@
 			</a>
 		</form>
 	{%endfor%}
+		<form method="POST">
+			<input type="hidden" name="start" value="{{index+5}}">
+			<input type="submit" value="Next Emails">
+		</form>
 {% endblock content %}
