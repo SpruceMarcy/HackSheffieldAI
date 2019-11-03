@@ -2,6 +2,7 @@ import imaplib
 import re
 import base64
 import quopri
+
 def getEmailsIMAP(server,user,password,ssl=False,port=None,start=0,count=5):
     if not port:
         port = 993 if ssl else 143

@@ -2,6 +2,9 @@ from flask import Flask, render_template, url_for, request, make_response
 from cryptography.fernet import Fernet
 import projectEmailGetter
 import Python_Classifier as pyClass
+import imaplib
+import socket
+
 app = Flask(__name__)
 key = Fernet.generate_key()
 
@@ -46,18 +49,23 @@ def submit():
         else:
             password=request.cookies.get('password')
             password=Fernet(key).decrypt(password.encode()).decode("utf-8")
-        emails=list(reversed(projectEmailGetter.getBriefFromEmails(projectEmailGetter.getEmailsIMAP(serverRL,
+        try:
+            emails=list(reversed(projectEmailGetter.getBriefFromEmails(projectEmailGetter.getEmailsIMAP(serverRL,
                                                                                       username,
                                                                                       password,
                                                                                       ssl=True,
                                                                                       start=start))))
-        res=make_response(render_template("choose.html",emails=enumerate(emails),index=start))
-        if 'username' in formdata and 'password' in formdata and 'server' in formdata:
-            res.set_cookie("username",Fernet(key).encrypt(formdata['username'].encode()))
-            res.set_cookie("password",Fernet(key).encrypt(formdata['password'].encode()))
-            res.set_cookie("serverRL",Fernet(key).encrypt(formdata['server'].encode()))
-        return res
-    return render_template("submit.html")
+            res=make_response(render_template("choose.html",emails=enumerate(emails),index=start))
+            if 'username' in formdata and 'password' in formdata and 'server' in formdata:
+                res.set_cookie("username",Fernet(key).encrypt(formdata['username'].encode()))
+                res.set_cookie("password",Fernet(key).encrypt(formdata['password'].encode()))
+                res.set_cookie("serverRL",Fernet(key).encrypt(formdata['server'].encode()))
+            return res
+        except imaplib.IMAP4.error as err:
+            return render_template("submit.html",error="Login Failed")
+        except socket.gaierror as err:
+            return render_template("submit.html",error="Invalid Server")
+    return render_template("submit.html",error="")
 
 @app.route('/check/<int:v>',methods=["GET","POST"])
 def check(v):
