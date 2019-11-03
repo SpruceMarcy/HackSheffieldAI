@@ -43,13 +43,15 @@ def check(v):
     password=Fernet(key).decrypt(password.encode())
     serverRL=request.cookies.get('serverRL')
     serverRL=Fernet(key).decrypt(serverRL.encode())
-    emails=projectEmailGetter.getPlainFromEmails(projectEmailGetter.getEmailsIMAP(serverRL.decode("utf-8"),
+    rawemail=projectEmailGetter.getEmailsIMAP(serverRL.decode("utf-8"),
                                                                                       username.decode("utf-8"),
                                                                                       password.decode("utf-8"),
                                                                                       ssl=True,
                                                                                       start=v,
-                                                                                      count=1))
-    return render_template("show.html",content=emails[0])
+                                                                                      count=1)
+    emails=projectEmailGetter.getPlainFromEmails(rawemail)
+    emailbrief=list(reversed(projectEmailGetter.getBriefFromEmails(rawemail)))
+    return render_template("show.html",content=emails[0],email=emailbrief)
 
 @app.route('/upload',methods=["GET","POST"])
 def upload():
