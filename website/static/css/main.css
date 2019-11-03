@@ -130,7 +130,12 @@ nav img{
 
 
 
-
+div.fraud{
+	background-color:#DDAAAA;
+}
+div.okay{
+	background-color:#AADDAA;
+}
 
 /* breakpoint for mobile */
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
